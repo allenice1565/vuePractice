@@ -1,11 +1,11 @@
 <template>
-    <div>我是Other页面</div>
+  <router-view />
 </template>
 <script>
-    export default {
-        name:"Other",
-        data(){
-            return {}
-        }
-    }
+export default {
+  name: "Other",
+  data() {
+    return {};
+  },
+};
 </script>
