@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { Button, Select, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup, Dropdown, DropdownMenu, DropdownItem, Row, Col, Card, Table, TableColumn } from 'element-ui'
+import {
+    Button, Select, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup,
+    Dropdown, DropdownMenu, DropdownItem, Row, Col, Card, Table, TableColumn,
+    Breadcrumb, BreadcrumbItem, Tag
+} from 'element-ui'
 import router from '../router'
 import store from './store'
 import http from 'axios'
@@ -25,6 +29,10 @@ Vue.use(Col)
 Vue.use(Card)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Tag)
+
 
 Vue.prototype.$http = http
 

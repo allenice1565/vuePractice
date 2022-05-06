@@ -103,7 +103,7 @@ export default {
       } else {
         this.normalOption.series = this.chartData.series;
       }
-      console.log(this.chartData);
+      // console.log(this.chartData);
     },
   },
 };

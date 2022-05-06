@@ -6,14 +6,17 @@
 
 <script>
 export default {
-    name: 'App',
-}
+  name: "App",
+  mounted() {
+    console.log(this);
+  },
+};
 </script>
 
 <style>
 html,
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 </style>
