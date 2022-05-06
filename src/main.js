@@ -3,7 +3,8 @@ import App from './App.vue'
 import {
     Button, Select, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup,
     Dropdown, DropdownMenu, DropdownItem, Row, Col, Card, Table, TableColumn,
-    Breadcrumb, BreadcrumbItem, Tag
+    Breadcrumb, BreadcrumbItem, Tag, Form, FormItem, Input, Switch, DatePicker, Option,
+    Dialog
 } from 'element-ui'
 import router from '../router'
 import store from './store'
@@ -13,6 +14,10 @@ import '../api/mock.js'
 
 Vue.use(Button)
 Vue.use(Select)
+Vue.use(Input)
+Vue.use(Switch)
+Vue.use(DatePicker)
+Vue.use(Option)
 Vue.use(Container)
 Vue.use(Header)
 Vue.use(Aside)
@@ -32,6 +37,9 @@ Vue.use(TableColumn)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
 Vue.use(Tag)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Dialog)
 
 
 Vue.prototype.$http = http
