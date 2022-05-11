@@ -15,41 +15,46 @@ const routes = [{
     name: "main",
     component: Main,
     children: [{
-            path: "/",
-            name: "home",
-            component: Home
+        path: "/",
+        name: "home",
+        component: Home
+    },
+    {
+        path: "/user",
+        name: "user",
+        component: User
+    },
+    {
+        path: "/other",
+        name: "other",
+        component: Other,
+        children: [{
+            path: "/other/page1",
+            name: "page1",
+            component: Page1
         },
         {
-            path: "/user",
-            name: "user",
-            component: User
-        },
-        {
-            path: "/other",
-            name: "other",
-            component: Other,
-            children: [{
-                    path: "/other/page1",
-                    name: "page1",
-                    component: Page1
-                },
-                {
-                    path: "/other/page2",
-                    name: "page2",
-                    component: Page2
-                }
-            ]
-        },
-        {
-            path: "/mall",
-            name: "mall",
-            component: Mall
-        }, {
-            path: "/user",
-            name: "user",
-            component: User
-        },
+            path: "/other/page2",
+            name: "page2",
+            component: Page2
+        }
+        ]
+    },
+    {
+        path: "/mall",
+        name: "mall",
+        component: Mall
+    }, {
+        path: "/user",
+        name: "user",
+        component: User
+    },
     ]
+},
+{
+    path: "/login",
+    name: "login",
+    component: () => import("../views/Login/login.vue")
 }]
 
 const router = new VueRouter({

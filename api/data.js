@@ -29,8 +29,3 @@ export const createUser = (params) => {
     })
 }
 
-// export const getData = () => {
-//     return axios.request({
-//         url: '/home/getData',
-//     })
-// }

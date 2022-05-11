@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Vuex from "vuex"
 import tab from "./tab"
+import user from "./user"
 
 Vue.use(Vuex) //将vuex进行全局的注入
 
@@ -9,6 +10,6 @@ Vue.use(Vuex) //将vuex进行全局的注入
 
 export default new Vuex.Store({
     modules: {
-        tab
+        tab, user
     }
 })

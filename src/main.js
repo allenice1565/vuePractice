@@ -53,6 +53,16 @@ Vue.prototype.$message = Message
 // Vue.prototype.$message = () => { }
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+    store.commit("getToken")  //防止页面刷新后丢失token信息
+    const token = store.state.user.token
+    if (!token && to.name !== 'login') {
+        next({ name: "login" })
+    } else {
+        next()
+    }
+})
+
 new Vue({
     store,
     router,
