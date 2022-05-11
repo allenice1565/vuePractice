@@ -12,3 +12,25 @@ export const getData = () => {
         url: '/home/getData',
     })
 }
+
+export const getUser = (params) => {
+    return axios.request({
+        url: '/user/getUser',
+        method: "get",
+        data: params
+    })
+}
+
+export const createUser = (params) => {
+    return axios.request({
+        url: '/home/getData',
+        method: "post",
+        data: params
+    })
+}
+
+// export const getData = () => {
+//     return axios.request({
+//         url: '/home/getData',
+//     })
+// }

@@ -10,13 +10,13 @@
                 v-if="item.type === 'switch'"
                 v-model="form[item.model]"
             ></el-switch>
-            <el-datepicker
+            <el-date-picker
                 v-if="item.type === 'date'"
                 type="date"
                 value-format="yyyy-mm-dd"
                 placeholder="请选择日期"
                 v-model="form[item.model]"
-            ></el-datepicker>
+            ></el-date-picker>
             <el-select
                 v-if="item.type === 'select'"
                 placeholder="请选择"
@@ -40,5 +40,8 @@ export default {
   data() {
     return {};
   },
+  //   mounted() {
+  //     console.log(this);
+  //   },
 };
 </script>

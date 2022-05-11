@@ -9,8 +9,8 @@
             :form="operateForm"
             :inline="true"
             ref="form"
-         />
-         <div class="dialog footer" slot="footer">
+         ></CommonForm>
+         <div class="dialog-footer" slot="footer">
              <el-button @click="isShow=false">取消</el-button>
              <el-button type="primary" @click="confirm">确定</el-button>
          </div>
@@ -18,20 +18,33 @@
          <div class="manage-header">
              <el-button type="primary" @click="addUser">+ 新增</el-button>
              <CommonForm 
-                :formLabel="FormLabel"
+                :formLabel="formLabel"
                 :form="searchForm"
                 :inline="true"
                 ref="form"
-         />
+              >
+                <el-button type="primary" @click="getList(searchForm.keyword)">搜索</el-button>
+              </CommonForm>
          </div>
+         <CommonTable
+          :tableData="tableData"
+          :tableLabel="tableLabel"
+          :config="config"
+          @changePage="getList"
+          @edit="editUser"
+          @del="delUser"
+         ></CommonTable>
     </div>
 </template>
 <script>
-import CommonForm from "../../src/components/CommonForm";
+import CommonForm from "../src/components/CommonForm";
+import CommonTable from "../src/components/CommonTable";
+import { getUser } from "../api/data";
 export default {
-  name: "User",
+  name: "user",
   components: {
     CommonForm,
+    CommonTable,
   },
   data() {
     return {
@@ -88,7 +101,7 @@ export default {
           type: "input",
         },
       ],
-      searchFrom: {
+      searchForm: {
         keyword: "",
       },
       tableData: [],
@@ -123,8 +136,96 @@ export default {
     };
   },
   methods: {
-    confirm() {},
+    confirm() {
+      if (this.operateType === "edit") {
+        this.$http.post("/user/edit", this.operateForm).then((res) => {
+          console.log(res);
+          this.isShow = false;
+          this.getList();
+        });
+      } else {
+        this.$http.post("/user/add", this.operateForm).then((res) => {
+          console.log(res);
+          this.isShow = false;
+          this.getList();
+        });
+      }
+    },
+    addUser() {
+      this.isShow = true;
+      this.operateType = "add";
+      this.operateForm = {
+        name: "",
+        addr: "",
+        age: "",
+        birth: "",
+        sex: "",
+      };
+      // createUser(this.operateForm).then(
+      //   (value) => {
+      //     // console.log(value);
+      //     if (value.data.code === 20000) {
+      //       this.tableData.unshift(this.operateForm);
+      //     } else {
+      //       this.$message.error("添加失败！");
+      //     }
+      //   },
+      //   (reason) => {
+      //     this.$message.error("添加失败！", reason);
+      //   }
+      // );
+    },
+    getList(name = "") {
+      this.config.loading = true;
+      name ? (this.config.page = 1) : "";
+      getUser({ page: this.config.page, name }).then(({ data: res }) => {
+        this.tableData = res.list.map((item) => {
+          item.sexLabel = item.sex === 0 ? "女" : "男";
+          return item;
+        });
+        this.config.total = res.count;
+        this.config.loading = false;
+      });
+    },
+    editUser(row) {
+      this.operateType = "edit";
+      this.isShow = true;
+      this.operateForm = row;
+    },
+    // delUser方法，原视频mock没能实现删除用户的效果，我修改了mock代码
+    delUser(row) {
+      this.$confirm("此操作讲永久删除该组件,是否继续？", "提示", {
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        const id = row.id;
+        this.$http
+          .post("/user/del", {
+            params: { id },
+          })
+          .then(({ data: res }) => {
+            this.$message({
+              type: res.message === "参数不正确" ? "error" : "success",
+              message:
+                res.message === "参数不正确"
+                  ? "删除失败，" + res.message
+                  : "删除成功",
+            });
+            this.getList();
+          });
+      });
+    },
   },
-  addUser() {},
+  created() {
+    this.getList();
+  },
 };
 </script>
+<style lang="less" scoped>
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>

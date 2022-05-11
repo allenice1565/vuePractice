@@ -95,9 +95,11 @@ export default {
       console.log(key, keyPath);
     },
     clickMenu(item) {
-      this.$router.push({
-        name: item.name,
-      });
+      if (item.name !== this.$route.name) {
+        this.$router.push({
+          name: item.name,
+        });
+      }
       this.$store.commit("selectMenu", item);
     },
   },

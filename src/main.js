@@ -4,7 +4,7 @@ import {
     Button, Select, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup,
     Dropdown, DropdownMenu, DropdownItem, Row, Col, Card, Table, TableColumn,
     Breadcrumb, BreadcrumbItem, Tag, Form, FormItem, Input, Switch, DatePicker, Option,
-    Dialog
+    Dialog, Pagination, MessageBox, Message
 } from 'element-ui'
 import router from '../router'
 import store from './store'
@@ -40,10 +40,17 @@ Vue.use(Tag)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Dialog)
+// Vue.use(MessageBox)
+Vue.use(Pagination)
+// Vue.use(Message)
+
 
 
 Vue.prototype.$http = http
-
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$message = Message
+// Vue.prototype.$confirm = () => { }
+// Vue.prototype.$message = () => { }
 Vue.config.productionTip = false
 
 new Vue({
