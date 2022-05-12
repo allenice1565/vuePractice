@@ -29,6 +29,10 @@ export default {
   data() {
     return {};
   },
+  created() {
+    this.$store.commit("addMenu", this.$router);
+    this.$router.push({ name: "home" });
+  },
 };
 </script>
 

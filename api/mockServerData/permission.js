@@ -16,39 +16,41 @@ export default {
               name: 'home',
               label: '首页',
               icon: 's-home',
-              url: 'home/index'
+              url: 'Home.vue'
             },
             {
               path: '/mall',
               name: 'mall',
               label: '商品管理',
               icon: 'video-play',
-              url: 'mall/index.vue'
+              url: 'Mall.vue'
             },
             {
               path: '/user',
               name: 'user',
               label: '用户管理',
               icon: 'user',
-              url: 'User/index'
+              url: 'User.vue'
             },
             {
+              path: '/other',
               label: '其他',
               icon: 'location',
+              url: "Other.vue",
               children: [
                 {
-                  path: '/page1',
+                  path: '/other/page1',
                   name: 'page1',
                   label: '页面1',
                   icon: 'setting',
-                  url: 'Other/PageOne.vue'
+                  url: 'Page1.vue'
                 },
                 {
-                  path: '/page2',
+                  path: '/other/page2',
                   name: 'page2',
                   label: '页面2',
                   icon: 'setting',
-                  url: 'Other/PageTwo.vue'
+                  url: 'Page2.vue'
                 }
               ]
             }
