@@ -30,8 +30,9 @@ export default {
     return {};
   },
   created() {
-    this.$store.commit("addMenu", this.$router);
-    this.$router.push({ name: "home" });
+    if (this.$route.path === "/") {
+      this.$router.push({ name: "home" });
+    }
   },
 };
 </script>

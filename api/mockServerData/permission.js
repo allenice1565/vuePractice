@@ -69,14 +69,14 @@ export default {
               name: 'home',
               label: '首页',
               icon: 's-home',
-              url: 'home/index'
+              url: 'Home.vue'
             },
             {
               path: '/video',
               name: 'video',
               label: '商品管理',
               icon: 'video-play',
-              url: 'VideoManage/VideoManage'
+              url: 'Mall.vue'
             }
           ],
           token: Mock.Random.guid(),
